@@ -11,7 +11,6 @@ class DeluxeCar extends Wagon {
      * @param pas The initial number of passengers in the deluxe car wagon.
      */
     public DeluxeCar(int capacity, int pas) {
-        // Calls the constructor of the superclass (Wagon) with the specified parameters and a fixed comfort level of 100.
         super(capacity, pas, 100);
     }
 }
