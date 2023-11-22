@@ -3,65 +3,77 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Represents a passenger train in a railway transport system.
+ * Represents a passenger train consisting of multiple wagons.
  */
 class PassengerTrain {
     /**
-     * The list of passenger wagons in the train.
+     * List of wagons in the passenger train.
      */
-    private ArrayList<PassengerWagon> wagons = new ArrayList<>();
+    private ArrayList<Wagon> wagons = new ArrayList<>();
 
     /**
-     * Adds a passenger wagon to the train.
-     * @param wagon The passenger wagon to be added to the train.
+     * Adds a wagon to the passenger train.
+     *
+     * @param wagon The wagon to be added.
      */
-    public void addWagon(PassengerWagon wagon) {
+    public void addWagon(Wagon wagon) {
         wagons.add(wagon);
     }
 
     /**
-     * Calculates the total number of passengers in the train.
-     * @return The total number of passengers in the train.
+     * Calculates and returns the total number of passengers in the passenger train.
+     *
+     * @return The total number of passengers in the passenger train.
      */
-    public int calculateTotalPassengers() {
+    public int getTotalPassengers() {
         int totalPassengers = 0;
-        for (PassengerWagon wagon : wagons) {
-            totalPassengers += wagon.getPassengers();
+        for (Wagon wagon : wagons) {
+            totalPassengers += wagon.numOfPassengers;
         }
         return totalPassengers;
     }
 
     /**
-     * Calculates the total amount of luggage in the train.
-     * @return The total amount of luggage in the train.
-     */
-    public int calculateTotalLuggage() {
-        int totalLuggage = 0;
-        for (PassengerWagon wagon : wagons) {
-            totalLuggage += wagon.getLuggage();
-        }
-        return totalLuggage;
-    }
-
-    /**
-     * Sorts the passenger wagons in the train by their comfort level.
+     * Sorts the wagons in the passenger train based on their comfort level in ascending order.
      */
     public void sortWagonsByComfort() {
-        Collections.sort(wagons, Comparator.comparingInt(PassengerWagon::getComfortLevel));
+        Collections.sort(wagons, Comparator.comparingInt(w -> w.comfortLevel));
     }
 
     /**
-     * Finds a passenger wagon in the train with a specified range of passenger count.
-     * @param minPassengers The minimum number of passengers in the range.
-     * @param maxPassengers The maximum number of passengers in the range.
-     * @return The first passenger wagon found within the specified passenger count range, or null if none is found.
+     * Finds and returns the first wagon in the passenger train that has a passenger count
+     * within the specified range.
+     *
+     * @param minPassengers The minimum number of passengers allowed in the wagon.
+     * @param maxPassengers The maximum number of passengers allowed in the wagon.
+     * @return The first wagon found with a passenger count within the specified range, or null if none is found.
      */
-    public PassengerWagon findWagonByPassengerCount(int minPassengers, int maxPassengers) {
-        for (PassengerWagon wagon : wagons) {
-            if (wagon.getPassengers() >= minPassengers && wagon.getPassengers() <= maxPassengers) {
+    public Wagon findWagonByPassengerCount(int minPassengers, int maxPassengers) {
+        for (Wagon wagon : wagons) {
+            if (wagon.numOfPassengers >= minPassengers && wagon.numOfPassengers <= maxPassengers) {
                 return wagon;
             }
         }
         return null;
+    }
+
+    /**
+     * Returns a string representation of the passenger train.
+     *
+     * @return A string representation of the passenger train, including details of its wagons.
+     */
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder("PassengerTrain{wagons=[");
+
+        for (int i = 0; i < wagons.size(); i++) {
+            result.append(wagons.get(i).toString());
+            if (i < wagons.size() - 1) {
+                result.append(", ");
+            }
+        }
+
+        result.append("]}");
+        return result.toString();
     }
 }

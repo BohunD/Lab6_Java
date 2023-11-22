@@ -1,52 +1,22 @@
-/**
- * Represents a general wagon in a railway transport system.
- */
 class Wagon {
-    /**
-     * The number of passengers in the wagon.
-     */
-    protected int passengers;
+    int capacity;
+    int comfortLevel;
+    int numOfPassengers;
 
-    /**
-     * The amount of luggage in the wagon.
-     */
-    protected int luggage;
-
-    /**
-     * Constructs a Wagon with the specified number of passengers and luggage.
-     * @param passengers The number of passengers in the wagon.
-     * @param luggage    The amount of luggage in the wagon.
-     */
-    public Wagon(int passengers, int luggage) {
-        this.passengers = passengers;
-        this.luggage = luggage;
+    public Wagon(int capacity, int numOfPassengers, int comfortLevel) {
+        this.capacity = capacity;
+        this.numOfPassengers = numOfPassengers;
+        this.comfortLevel = comfortLevel;
     }
 
-    /**
-     * Gets the number of passengers in the wagon.
-     * @return The number of passengers in the wagon.
-     */
-    public int getPassengers() {
-        return passengers;
+    public void setComfortLevel(int level){
+        this.comfortLevel = level;
     }
-
-    /**
-     * Gets the amount of luggage in the wagon.
-     * @return The amount of luggage in the wagon.
-     */
-    public int getLuggage() {
-        return luggage;
-    }
-
-    /**
-     * Returns a string representation of the Wagon object.
-     * @return A string containing information about the passengers and luggage of the wagon.
-     */
-    @Override
     public String toString() {
         return "Wagon{" +
-                "passengers=" + passengers +
-                ", luggage=" + luggage +
+                "capacity=" + capacity +
+                ", comfortLevel=" + comfortLevel +
+                ", numOfPassengers=" + numOfPassengers +
                 '}';
     }
 }
